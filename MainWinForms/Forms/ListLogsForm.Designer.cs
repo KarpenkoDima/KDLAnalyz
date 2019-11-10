@@ -45,13 +45,13 @@
             // 
             this.dataGridViewLogs.AllowUserToAddRows = false;
             this.dataGridViewLogs.AllowUserToDeleteRows = false;
+            this.dataGridViewLogs.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dataGridViewLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewLogs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewLogs.Location = new System.Drawing.Point(3, 19);
             this.dataGridViewLogs.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.dataGridViewLogs.MultiSelect = false;
             this.dataGridViewLogs.Name = "dataGridViewLogs";
-            this.dataGridViewLogs.ReadOnly = true;
             this.dataGridViewLogs.Size = new System.Drawing.Size(665, 526);
             this.dataGridViewLogs.TabIndex = 0;
             this.dataGridViewLogs.DoubleClick += new System.EventHandler(this.dataGridViewLogs_DoubleClick);

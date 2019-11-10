@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KDLAnalize.MainWinForms.BAL;
+using KDLAnalize.MainWinForms.DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,25 +15,24 @@ namespace KDLAnalize.MainWinForms.Forms
     public partial class ListLogsForm : Form
     {
         int _typeAnalizeId;
-        public ListLogsForm(int typeAnalizeId)
+        BindingSource bs;
+        public ListLogsForm(int typeAnalizeId, string Name)
         {
             InitializeComponent();
             this._typeAnalizeId = typeAnalizeId;
+            this.Text += " " + Name;            
+            Init();
         }
 
-        //private void buttonOpen_Click(object sender, EventArgs e)
-        //{
-        //    if (dataGridViewLogs.SelectedRows.Count > 0)
-        //    {
-        //        SelectRow();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Выберите строку", "Не выбрано ни одной строки");
-                
-        //    }
-        //}
-
+        private void Init()
+        {
+            bs = new BindingSource();
+            DB db = new DB();
+            LogAnalizeReposetory repo = new LogAnalizeReposetory(db, _typeAnalizeId);
+            bs.DataSource = repo.GetAll();
+            dataGridViewLogs.DataSource = bs;
+            
+        }
         private void dataGridViewLogs_DoubleClick(object sender, EventArgs e)
         {
             SelectRow();

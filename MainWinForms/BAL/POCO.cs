@@ -14,4 +14,12 @@ namespace KDLAnalize.MainWinForms.BAL
         public int TypeAnalizeID { get; set; }
         public string Name { get; set; }
     }
+
+    public class Log
+    {
+        public int LogID { get; set; }
+        public DateTime DateStart { get; set; }
+        public string Name { get; set; }
+        public DateTime? DateFinish { get; set; }
+    }
 }

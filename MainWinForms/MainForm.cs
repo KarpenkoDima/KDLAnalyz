@@ -1,4 +1,6 @@
-﻿using KDLAnalize.MainWinForms.Forms;
+﻿using KDLAnalize.MainWinForms.BAL;
+using KDLAnalize.MainWinForms.DAL;
+using KDLAnalize.MainWinForms.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,15 +15,32 @@ namespace KDLAnalize.MainWinForms
 {
     public partial class MainForm : Form
     {
+        BindingSource bs;
         public MainForm()
         {
             InitializeComponent();
+            Init();
         }
 
+        private void Init()
+        {
+            bs = new BindingSource();
+            DB db = new DB();
+            TypeAnalizeReposetory repo = new TypeAnalizeReposetory(db);
+            bs.DataSource = repo.GetAll();
+
+            listBoxTypeAnalize.Items.Clear();
+            listBoxTypeAnalize.DataSource = bs;
+            listBoxTypeAnalize.DisplayMember = "Name";
+            listBoxTypeAnalize.ValueMember = "TypeAnalizeID";
+
+            
+
+        }
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(listBoxTypeAnalize.SelectedIndex.ToString());
-            ListLogsForm logAnalize = new ListLogsForm(id);
+            int id = (int)(listBoxTypeAnalize.SelectedValue);
+            ListLogsForm logAnalize = new ListLogsForm(id, listBoxTypeAnalize.Text);
             logAnalize.ShowDialog();
         }
 

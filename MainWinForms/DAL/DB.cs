@@ -22,6 +22,14 @@ namespace KDLAnalize.MainWinForms.DAL
                 return connection.Query<TypeAnalize>(sql).ToList();
             }
         }
+        internal List<Log> GetDictlog(string dict , string where = "")
+        {
+            string sql = $"SELECT * FROM [GetAll{dict}View]";// {where}";
 
+            using (var connection = new SqlConnection(conn))
+            {
+                return connection.Query<Log>(sql).ToList();
+            }
+        }
     }
 }
